@@ -1,0 +1,31 @@
+binary_sensor.wyze_con_lr_front_mid_window:
+  device_class: window
+binary_sensor.back_door: {}
+binary_sensor.aeon_labs_zw089_recessed_door_sensor_gen5_sensor:
+  device_class: door
+binary_sensor.r_garage_sensor_2:
+  device_class: garage_door
+binary_sensor.vision_security_zg8101_garage_door_detector_sensor:
+  device_class: garage_door
+sensor.dryer_vibration_strength:
+  unit_of_measurement: vibes
+binary_sensor.dining_l:
+  device_class: window
+binary_sensor.dining_m:
+  device_class: window
+binary_sensor.dining_r:
+  device_class: window
+binary_sensor.fireplace_l:
+  device_class: window
+binary_sensor.fireplace_r:
+  device_class: window
+binary_sensor.kitchen_l:
+  device_class: window
+binary_sensor.kitchen_m:
+  device_class: window
+binary_sensor.kitchen_r:
+  device_class: window
+binary_sensor.front_door:
+  device_class: door
+binary_sensor.k_garage_sensor:
+  device_class: garage_door

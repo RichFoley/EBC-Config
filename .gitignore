@@ -1,0 +1,12 @@
+.storage
+custom_components/hacs
+secrets.yaml
+**/node-red
+*.xml
+*.json
+*.txt
+hacs.*
+*.sqlite
+*.log
+*.backup
+.uuid

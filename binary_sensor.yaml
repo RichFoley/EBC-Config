@@ -1,0 +1,13 @@
+- platform: wyzesense
+  device: auto
+
+- platform: template
+  sensors: 
+    back_door:
+      friendly_name: "Back Door"
+      device_class: door
+      value_template: "{{ is_state('sensor.back_door', '22') }}"
+    shed_door:
+      friendly_name: "Shed Door"
+      device_class: door
+      value_template: "{{ is_state('sensor.shed_door_access_control', '22') }}"

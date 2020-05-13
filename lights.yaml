@@ -1,0 +1,14 @@
+  - platform: switch
+    name: Rear Floodlight
+    entity_id: switch.rear_floodlight
+  - platform: switch
+    name: Front Floodlight
+    entity_id: switch.front_floodlight
+  - platform: switch
+    name: Porch Light
+    entity_id: switch.porch_light
+  - platform: group
+    name: All Floodlights
+    entities:
+      - light.front_floodlight
+      - light.rear_floodlight

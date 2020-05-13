@@ -1,0 +1,63 @@
+esphome:
+  name: garage_control
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret ssid
+  password: !secret ssidpassword
+  power_save_mode: none
+  fast_connect: true
+  reboot_timeout:
+    minutes: 3
+  # Static IP
+  manual_ip:
+    static_ip: 192.168.1.104
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Garage Control Fallback Hotspot"
+    password: !secret password
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret password
+
+ota:
+  password: !secret password
+
+output:
+  - platform: gpio
+    pin: D1
+    id: 'd1'
+    inverted: yes
+  - platform: gpio
+    pin: D2
+    id: 'd2'
+    inverted: yes
+    
+light:
+  - platform: binary
+    name: "Garage Light K"
+    output: d1
+  - platform: binary
+    name: "Garage Light R"
+    output: d2
+    
+sensor:
+  - platform: wifi_signal
+    name: "Garage Control WiFi Signal"
+    update_interval: 300s
+    
+binary_sensor:
+  - platform: gpio
+    pin: D0
+    name: "Garage Motion"
+    device_class: motion
