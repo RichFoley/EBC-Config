@@ -10,3 +10,4 @@ hacs.*
 *.log
 *.backup
 .uuid
+zones.yaml
