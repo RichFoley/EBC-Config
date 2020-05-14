@@ -45,3 +45,9 @@ garage_doors:
   entities:
     - binary_sensor.r_garage_sensor_2
     - binary_sensor.k_garage_sensor
+
+all_floodlights:
+  name: All Floodlights
+  entities:
+    - light.rear_floodlight
+    - light.front_floodlight

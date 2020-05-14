@@ -1,0 +1,32 @@
+auto_start: False
+filter:
+  include_entities:
+#Doors
+    - binary_sensor.front_door
+    - binary_sensor.back_door
+    - binary_sensor.shed_door
+    - binary_sensor.k_garage_sensor
+    - binary_sensor.r_garage_sensor_2
+    - group.garage_doors
+#Windows
+    - group.all_windows
+    - group.dining_window
+    - group.kitchen_window
+    - group.lining_room_window
+#Motion
+    - binary_sensor.kitchen_motion
+#Presence
+    - person.rich
+    - person.katie
+#Temp
+    - climate.downstairs
+    - sensor.downstairs_temperature
+    - sensor.bedroom_temperature
+    - sensor.downstairs_humidity
+#Lights
+    - group.all_floodlights
+    - light.rear_floodlight
+    - light.front_floodlight
+    - light.porch_light
+    - light.cabinet_lights
+    - light.countertop_lights

@@ -11,3 +11,4 @@ hacs.*
 *.backup
 .uuid
 zones.yaml
+.homekit.state
