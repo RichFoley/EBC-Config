@@ -1,0 +1,8 @@
+washing_machine_state:
+  name: Washing Machine State
+  options:
+    - Empty
+    - Filling
+    - Washing
+    - Clean
+  initial: Empty

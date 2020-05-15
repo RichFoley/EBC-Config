@@ -24,6 +24,7 @@ binary_sensor: !include binary_sensor.yaml
 light: !include lights.yaml
 timer: !include timers.yaml
 input_boolean: !include input_booleans.yaml
+input_select: !include input_selects.yaml
 homekit: !include homekit.yaml
 
 ecobee:
