@@ -1,0 +1,92 @@
+- alias: Washer Filling
+  id: washer_state_filling
+  description: Set washer state to filling when power detected
+  trigger:
+  - above: '3.5'
+    entity_id: sensor.pigtail_switch_power
+    platform: numeric_state
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.washing_machine_state
+      state: Empty
+    - condition: state
+      entity_id: input_select.washing_machine_state
+      state: Clean
+  action:
+  - data:
+      entity_id: input_select.washing_machine_state
+      option: Filling
+    service: input_select.select_option
+- alias: Washer Washing
+  id: washer_state_washing
+  description: Set washer state to filling when power detected
+  trigger:
+  - above: '100'
+    entity_id: sensor.pigtail_switch_power
+    platform: numeric_state
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.washing_machine_state
+      state: Empty
+    - condition: state
+      entity_id: input_select.washing_machine_state
+      state: Filling
+  action:
+  - data:
+      entity_id: input_select.washing_machine_state
+      option: Washing
+    service: input_select.select_option
+- alias: Washer State Clean
+  id: washer_state_clean
+  description: Set washer state to clean when no power detected
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.pigtail_switch_power
+    below: 2
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.washing_machine_state
+      state: Washing
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.washing_machine_state
+      option: Clean
+- alias: Washer State Empty
+  id: washer_state_empty
+  description: Set washer state to empty when lid opened after a run
+  trigger:
+  - entity_id: binary_sensor.washer_lid
+    platform: state
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.washing_machine_state
+      state: Clean
+  action:
+  - data:
+      entity_id: input_select.washing_machine_state
+      option: Empty
+    service: input_select.select_option
+- alias: Washer Notify
+  id: washer_notify
+  description: ''
+  trigger:
+  - entity_id: input_select.washing_machine_state
+    for: 00:05:00
+    platform: state
+    to: Clean
+  condition: []
+  action:
+  - data:
+      message: Clothes Need to be moved to the dryer.
+      title: Washer Done
+    service: notify.mobile_app_rphone

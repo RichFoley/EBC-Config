@@ -1,0 +1,22 @@
+- alias: Porch Light
+  id: porch_light
+  description: ''
+  trigger:
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.porch_light
+    service: light.turn_on
+- alias: Porch Light Off
+  id: porch_light_off
+  description: ''
+  trigger:
+  - at: '23:00:00'
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.porch_light
+    service: light.turn_off

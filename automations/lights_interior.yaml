@@ -1,0 +1,30 @@
+- alias: Countertop lights
+  id: countertop_lights
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.kitchen_motion
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: light.countertop_lights
+    state: 'off'
+  action:
+  - data: {}
+    entity_id: light.countertop_lights
+    service: light.turn_on
+- alias: Countertop Lights Off
+  id: countertop_lights_off
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.kitchen_motion
+    for: 00:03:00
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.countertop_lights
+    service: light.turn_off
