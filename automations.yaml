@@ -161,21 +161,21 @@
     data:
       entity_id: input_select.washing_machine_state
       option: Clean
-- alias: Washer State Empty
-  id: washer_state_empty
+- id: washer_state_empty
+  alias: Washer State Empty
   description: Set washer state to empty when lid opened after a run
   trigger:
-  - platform: state
-    entity_id: binary_sensor.washer_lid
-    to: 'On'
+  - entity_id: binary_sensor.washer_lid
+    platform: state
+    to: 'on'
   condition:
-    condition: and
+  - condition: and
     conditions:
     - condition: state
       entity_id: input_select.washing_machine_state
       state: Clean
   action:
-  - service: input_select.select_option
-    data:
+  - data:
       entity_id: input_select.washing_machine_state
       option: Empty
+    service: input_select.select_option
