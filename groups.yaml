@@ -51,3 +51,15 @@ all_floodlights:
   entities:
     - light.rear_floodlight
     - light.front_floodlight
+
+cabinet_lights:
+  name: Cabinet Lights
+  entities:
+    - light.cabinet_lights
+    - light.coffee_cabinet_lights
+
+countertop_lights:
+  name: Countertop Lights
+  entities:
+    - light.coffee_counter_lights
+    - light.countertop_lights

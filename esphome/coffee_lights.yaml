@@ -1,0 +1,70 @@
+esphome:
+  name: coffee_lights
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret ssid
+  password: !secret ssidpassword
+  power_save_mode: none
+  fast_connect: true
+  reboot_timeout:
+    minutes: 3
+  # Static IP
+  manual_ip:
+    static_ip: 192.168.1.106
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+    
+  ap:
+    ssid: "Coffee Lights Fallback Hotspot"
+    password: !secret password
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret password
+
+ota:
+  password: !secret password
+#ESPeasy testtemp
+#RGBWarm
+output:
+  - platform: esp8266_pwm
+    pin: 12
+    frequency: 1000 Hz
+    id: pwm_b
+  - platform: esp8266_pwm
+    pin: 15
+    frequency: 1000 Hz
+    id: pwm_g
+  - platform: esp8266_pwm
+    pin: 13
+    frequency: 1000 Hz
+    id: pwm_r
+  - platform: esp8266_pwm
+    pin: 14
+    frequency: 1000 Hz
+    id: pwm_w
+  - platform: esp8266_pwm
+    pin: 4
+    frequency: 1000 Hz
+    id: pwm_w2
+
+light:
+  - platform: rgbw
+    name: "Coffee Cabinet Lights"
+    red: pwm_r
+    green: pwm_g
+    blue: pwm_b
+    white: pwm_w
+  - platform: monochromatic
+    name: "Coffee Counter Lights"
+    output: pwm_w2
+
+sensor:
+  - platform: wifi_signal
+    name: "Coffee Lights WiFi Signal"
+    update_interval: 300s
