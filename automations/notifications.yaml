@@ -1,0 +1,20 @@
+- alias: Garage open late
+  id: garage_open_late
+  description: ''
+  trigger:
+  - at: '20:00'
+    platform: time
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.r_garage_sensor_2
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.k_garage_sensor
+      state: 'on'
+  action:
+  - service: notify.mobile_app_rphone
+    data:
+      title: Garage left open
+      message: Garage door open

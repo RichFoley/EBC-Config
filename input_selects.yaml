@@ -6,3 +6,10 @@ washing_machine_state:
     - Washing
     - Clean
   initial: Empty
+dryer_state:
+  name: Dryer State
+  options:
+    - Empty
+    - Drying
+    - Done
+  initial: Empty
