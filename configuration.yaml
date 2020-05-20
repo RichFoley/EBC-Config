@@ -32,11 +32,19 @@ ecobee:
 
 recorder:
   purge_keep_days: 60
-  db_url: mssql+pyodbc://HASSIO:Automagical1@192.168.1.222/HASSIO?charset=utf8;DRIVER={FreeTDS};Port=1433;
+  db_url: !secret sql_connection
 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
+http:
+  ssl_certificate: !secret cflare_ssl_pem
+  ssl_key: !secret cflare_ssl_key
+  base_url: !secret cflare_base_url
+
+cloudflare:
+  email: !secret cflare_email
+  api_key: !secret cflare_api_key
+  zone: !secret cflare_zone
+  records:
+    - ha
 
 # Text to speech
 tts:
