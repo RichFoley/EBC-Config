@@ -33,6 +33,10 @@ recorder:
   db_url: !secret sql_connection
 
 http:
+  use_x_forwarded_for: True
+  trusted_proxies:
+   - 127.0.0.1
+   - 192.168.1.0/24
   ssl_certificate: !secret cflare_ssl_pem
   ssl_key: !secret cflare_ssl_key
 
