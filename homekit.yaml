@@ -30,3 +30,5 @@ filter:
     - light.porch_light
     - light.cabinet_lights
     - light.countertop_lights
+#Unifi
+    - switch.kindle_internet
