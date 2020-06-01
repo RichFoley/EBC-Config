@@ -12,3 +12,4 @@ hacs.*
 .uuid
 zones.yaml
 .homekit.state
+.HA_VERSION
