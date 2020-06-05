@@ -3,7 +3,7 @@
   description: Set washer state to filling when power detected
   trigger:
   - above: '3.5'
-    entity_id: sensor.pigtail_switch_power
+    entity_id: sensor.washing_machine_power
     platform: numeric_state
   condition:
   - condition: or
@@ -24,7 +24,7 @@
   description: Set washer state to filling when power detected
   trigger:
   - above: '100'
-    entity_id: sensor.pigtail_switch_power
+    entity_id: sensor.washing_machine_power
     platform: numeric_state
   condition:
   - condition: or
@@ -45,7 +45,7 @@
   description: Set washer state to clean when no power detected
   trigger:
   - platform: numeric_state
-    entity_id: sensor.pigtail_switch_power
+    entity_id: sensor.washing_machine_power
     below: 2
   condition:
     condition: and

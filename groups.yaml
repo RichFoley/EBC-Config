@@ -17,7 +17,7 @@ all_doors:
     - binary_sensor.shed_door
     - binary_sensor.back_door
     - binary_sensor.front_door
-    - binary_sensor.r_garage_sensor_2
+    - binary_sensor.r_garage_sensor
     - binary_sensor.k_garage_sensor
 
 dining_window:
@@ -43,14 +43,8 @@ kitchen_window:
 garage_doors:
   name: Garage Doors
   entities:
-    - binary_sensor.r_garage_sensor_2
+    - binary_sensor.r_garage_sensor
     - binary_sensor.k_garage_sensor
-
-all_floodlights:
-  name: All Floodlights
-  entities:
-    - light.rear_floodlight
-    - light.front_floodlight
 
 cabinet_lights:
   name: Cabinet Lights

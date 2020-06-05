@@ -51,8 +51,3 @@ cloudflare:
 # Text to speech
 tts:
   - platform: google_translate
-
-zwave:
-  usb_path: /dev/ttyACM0
-  network_key: !secret network_key
-

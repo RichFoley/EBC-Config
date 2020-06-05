@@ -13,3 +13,5 @@ hacs.*
 zones.yaml
 .homekit.state
 .HA_VERSION
+
+!zwcfg_0xf3cf751d.xml
