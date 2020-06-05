@@ -1,0 +1,68 @@
+esphome:
+  name: crawlspace_dehumidifier
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret ssid
+  password: !secret ssidpassword
+  power_save_mode: none
+  fast_connect: true
+  reboot_timeout:
+    minutes: 3
+  # Static IP
+  manual_ip:
+    static_ip: 192.168.1.107
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+    
+  ap:
+    ssid: "Dehumidifier Fallback Hotspot"
+    password: !secret password
+
+# Enable logging
+logger:
+
+uart:
+  rx_pin: RX
+  baud_rate: 4800
+
+api:
+  password: !secret password
+
+ota:
+  password: !secret password
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "Dehumidifier Button"
+    on_press:
+      - switch.toggle: relay
+
+switch:
+  - platform: gpio
+    name: "Dehumidifier Relay"
+    pin: GPIO12
+    id: relay
+    restore_mode: RESTORE_DEFAULT_ON
+
+sensor:
+  - platform: cse7766
+    update_interval: 2s
+    current:
+      name: "Dehumidifier Current"
+    voltage:
+      name: "Dehumidifier Voltage"
+    power:
+      name: "Dehumidifier Power"
+  - platform: wifi_signal
+    name: "Dehumidifier WiFi Signal"
+    update_interval: 300s
+
+status_led:
+  pin:
+    number: GPIO13
