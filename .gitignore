@@ -16,3 +16,4 @@ zones.yaml
 www/
 .google.token
 google_calendars.yaml
+known_devices.yaml
