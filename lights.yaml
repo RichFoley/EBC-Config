@@ -7,8 +7,22 @@
   - platform: switch
     name: Porch Light
     entity_id: switch.porch_light
+
+#Groups
   - platform: group
     name: All Floodlights
     entities:
       - light.front_floodlight
       - light.rear_floodlight
+
+  - platform: group
+    name: All Cabinet Lights
+    entities:
+      - light.cabinet_lights
+      - light.coffee_cabinet_lights
+
+  - platform: group
+    name: All Countertop Lights
+    entities:
+      - light.coffee_counter_lights
+      - light.countertop_lights

@@ -45,15 +45,3 @@ garage_doors:
   entities:
     - binary_sensor.r_garage_sensor
     - binary_sensor.k_garage_sensor
-
-cabinet_lights:
-  name: Cabinet Lights
-  entities:
-    - light.cabinet_lights
-    - light.coffee_cabinet_lights
-
-countertop_lights:
-  name: Countertop Lights
-  entities:
-    - light.coffee_counter_lights
-    - light.countertop_lights
