@@ -6,7 +6,7 @@ filter:
     - binary_sensor.back_door
     - binary_sensor.shed_door
     - binary_sensor.k_garage_sensor
-    - binary_sensor.r_garage_sensor_2
+    - binary_sensor.r_garage_sensor
     - group.garage_doors
 #Windows
     - group.all_windows
@@ -24,11 +24,11 @@ filter:
     - sensor.bedroom_temperature
     - sensor.downstairs_humidity
 #Lights
-    - group.all_floodlights
+    - light.all_floodlights
     - light.rear_floodlight
     - light.front_floodlight
     - light.porch_light
-    - light.cabinet_lights
-    - light.countertop_lights
+    - light.all_cabinet_lights
+    - light.all_countertop_lights
 #Unifi
     - switch.kindle_internet
