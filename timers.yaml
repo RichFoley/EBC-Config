@@ -1,3 +1,7 @@
 zigbee_permit_join:
   name: Time remaining
   duration: 300 # seconds
+
+repeat_notification:
+  name: Notification Repeat
+  duration: 300 # seconds

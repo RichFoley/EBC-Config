@@ -18,3 +18,31 @@
     data:
       title: Garage left open
       message: Garage door open
+      data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 0.3
+
+- alias: Shed open late
+  id: shed_open_late
+  description: ''
+  trigger:
+  - at: '20:30'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: binary_sensor.shed_door
+    state: 'on'
+  action:
+  - service: notify.mobile_app_rphone
+    data:
+      title: Shed left open
+      message: Shed door open!!!
+      data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 0.3
