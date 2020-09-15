@@ -2,7 +2,7 @@
   id: garage_open_late
   description: ''
   trigger:
-  - at: '20:00'
+  - at: '20:00:00'
     platform: time
   condition:
   - condition: or
@@ -29,7 +29,7 @@
   id: shed_open_late
   description: ''
   trigger:
-  - at: '20:30'
+  - at: '20:30:00'
     platform: time
   condition:
   - condition: state
@@ -46,3 +46,21 @@
               name: default
               critical: 1
               volume: 0.3
+
+- id: 'Button_Notify'
+  alias: Notification
+  trigger:
+  - entity_id: sensor.call_button_click
+    platform: state
+    to: single
+  action:
+    - service: notify.mobile_app_rphone
+      data:
+        title: Button Pressed
+        message: Help me I can't get up!!!
+        data:
+            push:
+              sound:
+                name: default
+                critical: 1
+                volume: 0.3

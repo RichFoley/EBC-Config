@@ -2,7 +2,7 @@
   id: washer_state_filling
   description: Set washer state to filling when power detected
   trigger:
-  - above: '3.5'
+  - above: 3.5
     entity_id: sensor.washing_machine_power
     platform: numeric_state
   condition:
@@ -23,7 +23,7 @@
   id: washer_state_washing
   description: Set washer state to filling when power detected
   trigger:
-  - above: '100'
+  - above: 100
     entity_id: sensor.washing_machine_power
     platform: numeric_state
   condition:
