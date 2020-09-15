@@ -13,3 +13,19 @@ dryer_state:
     - Drying
     - Done
   initial: Empty
+
+dehumidifier_state:
+  name: Dehumidifier State
+  options:
+    - Idle
+    - Sampling
+    - Drying
+  initial: Idle
+
+sump_pump_state:
+  name: Sump Pump State
+  options:
+    - Idle
+    - Pumping
+    - Error
+  initial: Idle

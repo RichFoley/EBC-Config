@@ -1,0 +1,74 @@
+- alias: Dehumidifier Sampling
+  id: dehu_state_sampling
+  description: Set dehu state to sampling when power detected
+  trigger:
+  - above: 50
+    entity_id: sensor.dehumidifier_power
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: input_select.dehumidifier_state
+      option: Sampling
+    service: input_select.select_option
+
+- alias: Dehumidifier Drying
+  id: dehu_state_drying
+  description: Set dehu state to drying when power detected
+  trigger:
+  - above: 500
+    entity_id: sensor.dehumidifier_power
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: input_select.dehumidifier_state
+      option: Drying
+    service: input_select.select_option
+
+- alias: Dehumidifier Idle
+  id: dehu_state_idle
+  description: Set dehu state to off when no power detected
+  trigger:
+  - below: 25
+    entity_id: sensor.dehumidifier_power
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: input_select.dehumidifier_state
+      option: Idle
+    service: input_select.select_option
+
+- alias: Sump Pump Pumping
+  id: sump_pump_pumping
+  trigger:
+  - above: 100
+    entity_id: sensor.sump_pump_power
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: input_select.sump_pump_state
+      option: Pumping
+    service: input_select.select_option
+
+- alias: Sump Pump Idle
+  id: sump_pump_idle
+  trigger:
+  - below: 5
+    entity_id: sensor.sump_pump_power
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: input_select.sump_pump_state
+      option: Idle
+    service: input_select.select_option
+
+- alias: Sump Pump Error
+  id: sump_pump_error
+  trigger:
+  - above: 800
+    entity_id: sensor.sump_pump_power
+    platform: numeric_state
+  action:
+  - data:
+      entity_id: input_select.sump_pump_state
+      option: Error
+    service: input_select.select_option
