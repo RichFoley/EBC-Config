@@ -32,3 +32,6 @@ filter:
     - light.all_countertop_lights
 #Unifi
     - switch.kindle_internet
+#Fans
+    - fan.master_ceiling_fan
+    - fan.ceiling_fan
