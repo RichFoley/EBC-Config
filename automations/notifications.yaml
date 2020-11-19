@@ -8,7 +8,7 @@
   - condition: or
     conditions:
     - condition: state
-      entity_id: binary_sensor.r_garage_sensor_2
+      entity_id: binary_sensor.r_garage_sensor
       state: 'on'
     - condition: state
       entity_id: binary_sensor.k_garage_sensor
