@@ -20,7 +20,7 @@ binary_sensor.kitchen_r:
   device_class: window
 binary_sensor.front_door:
   device_class: door
-binary_sensor.k_garage_sensor:
+binary_sensor.k_garage:
   device_class: garage_door
-binary_sensor.r_garage_sensor:
+binary_sensor.r_garage:
   device_class: garage_door

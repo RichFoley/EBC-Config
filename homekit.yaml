@@ -19,10 +19,11 @@ filter:
     - person.rich
     - person.katie
 #Temp
-    - climate.downstairs
-    - sensor.downstairs_temperature
-    - sensor.bedroom_temperature
-    - sensor.downstairs_humidity
+    # - climate.downstairs
+    # - sensor.downstairs_temperature
+    # - sensor.bedroom_temperature
+    # - sensor.downstairs_humidity
+#    - sensor.
 #Lights
     - light.all_floodlights
     - light.rear_floodlight

@@ -17,8 +17,8 @@ all_doors:
     - binary_sensor.shed_door
     - binary_sensor.back_door
     - binary_sensor.front_door
-    - binary_sensor.r_garage_sensor
-    - binary_sensor.k_garage_sensor
+    - binary_sensor.r_garage
+    - binary_sensor.k_garage
 
 dining_window:
   name: Dining Window
@@ -43,5 +43,5 @@ kitchen_window:
 garage_doors:
   name: Garage Doors
   entities:
-    - binary_sensor.r_garage_sensor
-    - binary_sensor.k_garage_sensor
+    - binary_sensor.r_garage
+    - binary_sensor.k_garage
