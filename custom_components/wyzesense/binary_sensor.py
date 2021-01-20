@@ -107,7 +107,11 @@ def setup_platform(hass, config, add_entites, discovery_info=None):
                 
             else:
                 entities[event.MAC]._data = data
-                entities[event.MAC].schedule_update_ha_state()
+                try:
+                    entities[event.MAC].schedule_update_ha_state()
+                except(AttributeError, AssertionError):
+                    _LOGGER.debug("Wyze sensor not yet ready for update")
+
 
     @retry(TimeoutError, tries=10, delay=1, logger=_LOGGER)
     def beginConn():

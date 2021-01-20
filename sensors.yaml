@@ -2,3 +2,6 @@
   name: Bridge state
   state_topic: "zigbee2mqtt/bridge/state"
   icon: mdi:router-wireless
+- platform: statistics
+  entity_id: sensor.laundry_aqara_temperature
+  name: Laundry_Temp_Stats

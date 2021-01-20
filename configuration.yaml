@@ -40,18 +40,12 @@ http:
   ssl_certificate: !secret cflare_ssl_pem
   ssl_key: !secret cflare_ssl_key
 
-cloudflare:
-  email: !secret cflare_email
-  api_key: !secret cflare_api_key
-  zone: !secret cflare_zone
-  records:
-    - ha
-    - www
-
-# Text to speech
 tts:
   - platform: google_translate
 
 google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
+
+logger:
+  default: info
