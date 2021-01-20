@@ -52,16 +52,27 @@ switch:
 
 sensor:
   - platform: cse7766
-    update_interval: 2s
     current:
       name: "Dehumidifier Current"
+      filters:
+        - or:
+          - throttle: 30s
+          - delta: 0.5
     voltage:
       name: "Dehumidifier Voltage"
+      filters:
+        - or:
+          - throttle: 30s
+          - delta: 1
     power:
       name: "Dehumidifier Power"
+      filters:
+        - or:
+          - throttle: 30s
+          - delta: 5
   - platform: wifi_signal
     name: "Dehumidifier WiFi Signal"
-    update_interval: 300s
+    update_interval: 400s
 
 status_led:
   pin:

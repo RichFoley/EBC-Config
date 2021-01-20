@@ -55,13 +55,25 @@ sensor:
     update_interval: 2s
     current:
       name: "Sump Pump Current"
+      filters:
+        - or:
+          - throttle: 60s
+          - delta: 0.5
     voltage:
       name: "Sump Pump Voltage"
+      filters:
+        - or:
+          - throttle: 60s
+          - delta: 1
     power:
       name: "Sump Pump Power"
+      filters:
+        - or:
+          - throttle: 60s
+          - delta: 5
   - platform: wifi_signal
     name: "Sump Pump WiFi Signal"
-    update_interval: 300s
+    update_interval: 600s
 
 status_led:
   pin:
