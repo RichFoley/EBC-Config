@@ -1,12 +1,12 @@
-auto_start: False
+# auto_start: False
 filter:
   include_entities:
 #Doors
     - binary_sensor.front_door
     - binary_sensor.back_door
     - binary_sensor.shed_door
-    - binary_sensor.k_garage_sensor
-    - binary_sensor.r_garage_sensor
+    - binary_sensor.k_garage
+    - binary_sensor.r_garage
     - group.garage_doors
 #Windows
     - group.all_windows
@@ -17,13 +17,16 @@ filter:
     - binary_sensor.kitchen_motion
 #Presence
     - person.rich
-    - person.katie
+    - person.kate
 #Temp
-    # - climate.downstairs
-    # - sensor.downstairs_temperature
-    # - sensor.bedroom_temperature
-    # - sensor.downstairs_humidity
-#    - sensor.
+    - climate.downstairs
+    - sensor.downstairs_temperature
+    - sensor.ecobee_remote_temperature
+    - sensor.downstairs_humidity
+    - sensor.bonus_room_aqara_temperature
+    - sensor.garage_aqara_temperature
+    - sensor.garage_aqara_humidity
+
 #Lights
     - light.all_floodlights
     - light.rear_floodlight
@@ -31,8 +34,22 @@ filter:
     - light.porch_light
     - light.all_cabinet_lights
     - light.all_countertop_lights
+    - light.hutch_lights
+    - light.tv_wled
+    - switch.wled_nightlight
 #Unifi
     - switch.kindle_internet
 #Fans
     - fan.master_ceiling_fan
     - fan.ceiling_fan
+
+#Alarm
+    - alarm_control_panel.alarm
+
+entity_config:
+      alarm_control_panel.alarm:
+        code: !secret alarm_code
+      sensor.bonus_room_aqara_temperature:
+        linked_battery_sensor: sensor.bonus_room_aqara_battery
+      sensor.garage_aqara_temperature:
+        linked_battery_sensor: sensor.garage_aqara_battery
