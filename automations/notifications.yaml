@@ -8,10 +8,10 @@
   - condition: or
     conditions:
     - condition: state
-      entity_id: binary_sensor.r_garage_sensor
+      entity_id: binary_sensor.r_garage
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.k_garage_sensor
+      entity_id: binary_sensor.k_garage
       state: 'on'
   action:
   - service: notify.mobile_app_rphone
@@ -50,7 +50,7 @@
 - id: 'Button_Notify'
   alias: Notification
   trigger:
-  - entity_id: sensor.call_button_click
+  - entity_id: sensor.smart_button_click
     platform: state
     to: single
   action:
@@ -58,6 +58,24 @@
       data:
         title: Button Pressed
         message: Help me I can't get up!!!
+        data:
+            push:
+              sound:
+                name: default
+                critical: 1
+                volume: 0.3
+
+- id: 'UPS_Discharging'
+  alias: UPS Discharging Notification
+  trigger:
+  - entity_id: sensor.closet_ups_status
+    platform: state
+    to: Online Battery Discharging
+  action:
+    - service: notify.mobile_app_rphone
+      data:
+        title: Power Failure
+        message: UPS State is {{ states.sensor.closet_ups_status.state }}.
         data:
             push:
               sound:
