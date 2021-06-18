@@ -1,0 +1,40 @@
+- alias: 'Trigger alarm while armed away'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      to: "detected"
+    - platform: state
+      entity_id: group.all_doors
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: armed_away
+  action:
+    service: alarm_control_panel.alarm_trigger
+    target:
+      entity_id: alarm_control_panel.alarm
+
+- alias: 'Disarm alarm when someone gets home'
+  trigger:
+    - platform: state
+      entity_id: group.family
+      to: "home"
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      target:
+        entity_id: alarm_control_panel.alarm
+      data:
+        code: !secret alarm_code
+
+- alias: 'Arm alarm when everyonr leaves'
+  trigger:
+    - platform: state
+      entity_id: group.family
+      to: "not_home"
+  action:
+    - service: alarm_control_panel.alarm_arm_away
+      target:
+        entity_id: alarm_control_panel.alarm
+      data:
+        code: !secret alarm_code

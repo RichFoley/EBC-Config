@@ -47,5 +47,28 @@ google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
 
+alarm_control_panel:
+  - platform: manual
+    name: Alarm
+    code: 1111
+    arming_time: 30
+    delay_time: 20
+    trigger_time: 10
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      arming_time: 0
+      delay_time: 0
+
 logger:
   default: info
+
+# panel_iframe:
+#   zwavejs:
+#     title: 'ZwaveJS'
+#     url: 'http://192.168.1.101:8092'
+#     icon: 'mdi:z-wave'
+#   zigbee:
+#     title: 'Zigbee'
+#     url: 'http://192.168.1.101:8099'
+#     icon: 'mdi:zigbee'

@@ -45,3 +45,9 @@ garage_doors:
   entities:
     - binary_sensor.r_garage
     - binary_sensor.k_garage
+
+family:
+  name: Family
+  entities:
+    - person.kate
+    - person.rich
