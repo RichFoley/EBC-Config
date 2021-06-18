@@ -28,3 +28,27 @@
   - data: {}
     entity_id: light.all_countertop_lights
     service: light.turn_off
+
+- alias: Hutch Light On
+  id: hutch_light_on
+  description: ''
+  trigger:
+  - at: '08:00:00'
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.hutch_lights
+    service: light.turn_on
+
+- alias: Hutch Light Off
+  id: hutch_light_off
+  description: ''
+  trigger:
+  - at: '23:00:00'
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.hutch_lights
+    service: light.turn_off
