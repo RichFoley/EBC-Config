@@ -28,3 +28,7 @@ binary_sensor.k_garage:
   device_class: garage_door
 binary_sensor.r_garage:
   device_class: garage_door
+sensor.voc:
+  unit_of_measurement: AQI
+sensor.pm_2_5um_cleaned:
+  unit_of_measurement: µg/m³

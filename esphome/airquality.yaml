@@ -1,0 +1,148 @@
+esphome:
+  name: airquality
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret ssid
+  password: !secret ssidpassword
+  power_save_mode: none
+  fast_connect: true
+  reboot_timeout:
+    minutes: 3
+  # Static IP
+  manual_ip:
+    static_ip: 192.168.1.114
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+
+# Enable logging
+logger:
+
+i2c:
+  sda: D2
+  scl: D1
+  frequency: 100kHz
+
+# Enable Home Assistant API
+api:
+  password: !secret password
+
+ota:
+  password: !secret password
+  
+uart:
+  tx_pin: D6
+  rx_pin: D7
+  baud_rate: 9600
+    
+sensor:
+  - platform: wifi_signal
+    name: "AQI WiFi Signal"
+    update_interval: 300s
+    
+  - platform: scd4x
+    co2:
+      name: "CO2"
+    temperature:
+      name: "CO2 Temp"
+      id: co2temp
+    humidity:
+      name: "CO2 Humidity"
+      id: co2hum
+    
+  - platform: sgp40
+    name: "VOC"
+    device_class: aqi
+    store_baseline: true
+    update_interval: 20s
+    compensation:
+      temperature_source: co2temp
+      humidity_source: co2hum
+    
+# Particulate Sensor
+  - platform: pmsx003
+    type: PMSX003
+    pm_1_0:
+      name: "PM <1.0µm"
+      id: pm_1_0
+    pm_2_5:
+      name: "PM <2.5µm"
+      id: pm_2_5
+    pm_10_0:
+      name: "PM <10.0µm"
+      id: pm_10_0
+      
+  - platform: adc
+    pin: A0
+    name: 'AQI Sound Level'
+    
+  - platform: template
+    name: "PM <2.5µm Cleaned"
+    id: pm_2_5_cleaned
+    device_class: pm25
+    lambda: |-
+      if (id(pms_awake_and_warm).state) {
+        return (id(pm_2_5).state);
+      } else {
+        return {};
+      }
+    update_interval: 1s
+    filters:
+    #force a value every second (only)
+    - heartbeat: 1s
+    #Use last 10 values (seconds) in a moving average, and just push it out every 10 so we're not sending so much data. 
+    - sliding_window_moving_average:
+        window_size: 10
+        send_every: 10
+        send_first_at: 10
+      
+binary_sensor:
+  - platform: gpio
+    name: "AQI Sound"
+    pin: D5
+    # device_class: motion
+    
+  - platform: template
+    name: "PMS is awake and warm"
+    id: pms_awake_and_warm
+    lambda: |-
+      if (id(pms_set).state) {
+        return true;
+      } else {
+        return false;
+      }
+    filters:
+      - delayed_on: 40s
+    
+#Switch on set pin to measure PM every x seconds
+switch:
+  - platform: gpio
+    pin: 
+      number: D3
+    id: pms_set
+    name: "PM Enable"
+interval:
+  - interval: 200s
+    then:
+      - switch.turn_on: pms_set
+      - delay: 70s
+      - switch.turn_off: pms_set
+      
+      
+#OpenSans.ttf
+# font:
+#   - file: "fonts/OpenSans.ttf"
+#     id: opensans
+#     size: 25
+
+# display:
+#   - platform: ssd1327_i2c
+#     model: "SSD1327 128x128"
+#     #reset_pin: D0
+#     address: 0x3C
+#     update_interval: 10s
+#     #address: 0x78
+#     lambda: |-
+#       it.print(0, 0, id(opensans), "Hello");
+#       it.print(0, 30, id(opensans), "Hello");
