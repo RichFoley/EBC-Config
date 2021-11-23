@@ -19,6 +19,9 @@ wifi:
   ap:
     ssid: "RF Bridge Fallback Hotspot"
     password: !secret password
+
+ota:
+  password: !secret password
     
 api:
   services:
