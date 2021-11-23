@@ -1,0 +1,5 @@
+- platform: group
+  name: all_ios_devices
+  services:
+  - service: notify_mobile_app_rphone
+  - service: notify_mobile_app_ipad

@@ -5,25 +5,25 @@
   - at: '20:00:00'
     platform: time
   condition:
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: binary_sensor.r_garage
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.k_garage
-      state: 'on'
+  - condition: state
+    entity_id: group.garage_doors
+    state: 'on'
   action:
   - service: notify.mobile_app_rphone
     data:
       title: Garage left open
-      message: Garage door open
+      message: >
+        {% for entity in expand(state_attr('group.garage_doors','entity_id')) -%}
+        {%if states(entity.entity_id)%} {{ state_attr(entity.entity_id,'friendly_name') }} is open. 
+        {%-endif%}
+        {%endfor%}
       data:
           push:
             sound:
               name: default
               critical: 1
               volume: 0.3
+            vibrationPattern: 100, 1000, 100, 1000, 100
 
 - alias: Shed open late
   id: shed_open_late
