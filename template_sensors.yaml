@@ -1,0 +1,13 @@
+- sensor:
+    - name: dryer_temp_change
+      state: "{{state_attr('sensor.laundry_temp_stats','change')}}"
+      unit_of_measurement: '° chg'
+    - name: dryer_temp_change_rate
+      state: "{{state_attr('sensor.laundry_temp_stats','change_rate')}}"
+      unit_of_measurement: '° chg'
+    - name: dryer_temp_average_change
+      state: "{{state_attr('sensor.laundry_temp_stats','average_change')}}"
+      unit_of_measurement: '° chg'
+    - name: dryer_temp_standard_deviation
+      state: "{{state_attr('sensor.laundry_temp_stats','standard_deviation')}}"
+      unit_of_measurement: '° chg'
