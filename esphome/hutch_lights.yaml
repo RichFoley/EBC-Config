@@ -9,7 +9,7 @@ wifi:
   power_save_mode: none
   fast_connect: true
   reboot_timeout:
-    minutes: 3
+    minutes: 15
   # Static IP
   manual_ip:
     static_ip: 192.168.1.104
@@ -54,15 +54,23 @@ output:
     id: pwm_w2
 
 light:
-  # - platform: rgbw
-  #   name: "Hutch RGBW Lights"
-  #   red: pwm_r
-  #   green: pwm_g
-  #   blue: pwm_b
-  #   white: pwm_w
   - platform: monochromatic
     name: "Hutch Lights"
     output: pwm_w2
+    effects:
+      - pulse:
+          name: Fast Pulse
+          transition_length: 0.25s
+          update_interval: 0.5s
+      - pulse:
+          name: Slow Pulse
+          # transition_length: 1s      # defaults to 1s
+          update_interval: 2s
+    #   - strobe:
+      - flicker:
+          name: Flicker
+          alpha: 90%
+          intensity: 3.5%
 
 sensor:
   - platform: wifi_signal

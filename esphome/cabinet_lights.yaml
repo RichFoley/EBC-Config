@@ -63,6 +63,12 @@ light:
   - platform: monochromatic
     name: "Countertop Lights"
     output: pwm_w2
+    effects:
+      - flicker:
+          name: Flicker 9035
+          alpha: 90%
+          intensity: 3.5%
+      - pulse:
 
 sensor:
   - platform: wifi_signal
