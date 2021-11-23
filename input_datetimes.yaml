@@ -1,0 +1,4 @@
+morning_lights_on:
+  name: Morning Lights On
+  has_date: false
+  has_time: true

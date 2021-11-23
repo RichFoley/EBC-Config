@@ -1,0 +1,7 @@
+exclude:
+  domains:
+    - automation
+  #entities:
+    
+  #entity_globs:
+    

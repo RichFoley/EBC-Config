@@ -33,7 +33,7 @@
   id: hutch_light_on
   description: ''
   trigger:
-  - at: '08:00:00'
+  - at: '07:25:00'
     platform: time
   condition: []
   action:

@@ -5,9 +5,11 @@ secrets.yaml
 *.xml
 *.json
 *.txt
+*.ttf
 hacs.*
 *.sqlite
 *.log
+*.log*
 *.backup
 .uuid
 zones.yaml
@@ -17,6 +19,7 @@ www/
 .google.token
 google_calendars.yaml
 known_devices.yaml
-custom_components/wyzesense/__pycache__/
+custom_components/frigate
 /tts
 /blueprints
+blackened.yaml

@@ -1,0 +1,18 @@
+hello_world:
+  name: Hello World
+  description: Log hello world
+
+light_store:
+  name: Light State Store
+  description: Save and restore lights, switches and/or groups of these.
+  fields:
+    store_name:
+      description: Optional, The domain name to use for the entities created in the State Machine to hold the saved states and attributes.
+      example: light_store
+    entity_id:
+      description: The light that will be stored.
+      example: light.hutch_light
+    operation:
+      description: save or restore
+      example: save
+    overwrite: Only applies to saving. If True will overwrite any previously saved states. If False, will only save current states if they have not already been saved, otherwise will skip saving. The default is True.

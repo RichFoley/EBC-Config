@@ -3,6 +3,7 @@ homeassistant:
   time_zone: America/Detroit
   customize: !include customize.yaml
   external_url: !secret cflare_base_url
+  internal_url: !secret internal_url
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -20,13 +21,17 @@ automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 scene: !include scenes.yaml
 sensor: !include sensors.yaml
+template: !include template_sensors.yaml
 zone: !include zones.yaml
-binary_sensor: !include binary_sensor.yaml
+# binary_sensor: !include binary_sensor.yaml
 light: !include lights.yaml
 timer: !include timers.yaml
 input_boolean: !include input_booleans.yaml
+input_datetime: !include input_datetimes.yaml
 input_select: !include input_selects.yaml
 homekit: !include homekit.yaml
+notify: !include notifications.yaml
+python_script:
 
 recorder:
   purge_keep_days: 60
@@ -37,6 +42,8 @@ http:
   trusted_proxies:
    - 127.0.0.1
    - 192.168.1.0/24
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
   ssl_certificate: !secret cflare_ssl_pem
   ssl_key: !secret cflare_ssl_key
 
@@ -50,18 +57,21 @@ google:
 alarm_control_panel:
   - platform: manual
     name: Alarm
-    code: 1111
+    code: !secret alarm_code
     arming_time: 30
-    delay_time: 20
-    trigger_time: 10
+    delay_time: 50
+    trigger_time: 30
     disarmed:
       trigger_time: 0
     armed_home:
-      arming_time: 0
+      arming_time: 15
       delay_time: 0
 
 logger:
   default: info
+
+hacs:
+  token: !secret hacs_token
 
 # panel_iframe:
 #   zwavejs:

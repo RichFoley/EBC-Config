@@ -5,7 +5,7 @@
 - platform: statistics
   entity_id: sensor.laundry_aqara_temperature
   name: Laundry_Temp_Stats
-- platform: command_line
-  name: Wyse Sense Dongle
-  command: "lsusb | grep -c 'QinHeng'"
-  #value_template: "{{ value | 'Online' if 1 else 'Offline' }}"
+
+# - platform: rest
+#   resource: https://www.purpleair.com/json?show=12835
+#   name: Air Quality
