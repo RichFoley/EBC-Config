@@ -1,16 +1,4 @@
 
-all_windows:
-  name: All Windows
-  entities:
-    - binary_sensor.dining_l
-    - binary_sensor.dining_m
-    - binary_sensor.dining_r
-    - binary_sensor.fireplace_l
-    - binary_sensor.fireplace_r
-    - binary_sensor.kitchen_l
-    - binary_sensor.kitchen_m
-    - binary_sensor.kitchen_r
-
 all_doors:
   name: All Doors
   entities:
@@ -19,26 +7,6 @@ all_doors:
     - binary_sensor.front_door
     - binary_sensor.r_garage
     - binary_sensor.k_garage
-
-dining_window:
-  name: Dining Window
-  entities:
-    - binary_sensor.dining_l
-    - binary_sensor.dining_m
-    - binary_sensor.dining_r
-
-lining_room_window:
-  name: Living Roow Window
-  entities:
-    - binary_sensor.fireplace_l
-    - binary_sensor.fireplace_r
-
-kitchen_window:
-  name: Kitchen Window
-  entities:
-    - binary_sensor.kitchen_l
-    - binary_sensor.kitchen_m
-    - binary_sensor.kitchen_r
 
 garage_doors:
   name: Garage Doors
@@ -51,3 +19,10 @@ family:
   entities:
     - person.kate
     - person.rich
+
+dogsitters:
+  name: DogSitters
+  entities:
+    - device_tracker.annagraces_air
+    - device_tracker.annagraces_iphone
+    - device_tracker.sarahs_air
