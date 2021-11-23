@@ -1,0 +1,87 @@
+esphome:
+  name: coffee_relay
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret ssid
+  password: !secret ssidpassword
+  power_save_mode: none
+  fast_connect: true
+  reboot_timeout:
+    minutes: 3
+  # Static IP
+  manual_ip:
+    static_ip: 192.168.1.113
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+    
+  ap:
+    ssid: "Coffee Relay Fallback Hotspot"
+    password: !secret password
+
+logger:
+  baud_rate: 0
+  
+uart:
+  rx_pin: RX
+  baud_rate: 4800
+
+api:
+  password: !secret password
+
+ota:
+  password: !secret password
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "Coffee Button"
+    on_press:
+      - switch.toggle: relay #change this
+
+switch:
+  - platform: gpio
+    name: "Coffee Maker Relay"
+    pin: GPIO12
+    id: relay
+    restore_mode: RESTORE_DEFAULT_ON
+
+sensor:
+  - platform: cse7766
+    current:
+      name: "Coffee Maker Current"
+      filters:
+        - or:
+          - delta: 0.2
+          - throttle: 30s
+    voltage:
+      name: "Coffee Maker Voltage"
+      filters:
+        - or:
+          - delta: 1
+          - throttle: 30s
+    power:
+      name: "Coffee Maker Power"
+      filters:
+        - or:
+          - delta: 2
+          - throttle: 30s
+  - platform: wifi_signal
+    name: "Coffee Maker WiFi Signal"
+    update_interval: 400s
+
+light:
+  - platform: status_led
+    name: "Coffee Maker Indicator"
+    pin: 
+      number: GPIO13
+      inverted: true
+    effects:
+      - strobe:
+          name: Strobe
+      
+    
