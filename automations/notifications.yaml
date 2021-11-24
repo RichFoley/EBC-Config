@@ -82,3 +82,23 @@
                 name: default
                 critical: 1
                 volume: 0.3
+
+- id: 'Front_door_notify'
+  alias: Front Door Notify
+  description: 'e'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_motion
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.all_ios_devices
+    data:
+        title: Motion at the front door
+        message: put image here eventually
+        data:
+            push:
+              sound:
+                name: default
+                critical: 1
+                volume: 0.3
