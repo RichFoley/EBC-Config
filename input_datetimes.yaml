@@ -2,3 +2,38 @@ morning_lights_on:
   name: Morning Lights On
   has_date: false
   has_time: true
+
+morning_lights_off:
+  name: Morning Lights Off
+  has_date: false
+  has_time: true
+
+evening_lights_on:
+  name: Evening Lights On
+  has_date: false
+  has_time: true
+
+evening_lights_off:
+  name: Evening Lights Off
+  has_date: false
+  has_time: true
+
+school_bus_alert:
+  name: School Bus Alarm
+  has_date: false
+  has_time: true
+
+breakfast_time:
+  name: Breakfast (1)
+  has_date: false
+  has_time: true
+
+get_dressed:
+  name: Get Dressed (2)
+  has_date: false
+  has_time: true
+
+watch_for_bus:
+  name: Watch for Bus (3)
+  has_date: false
+  has_time: true

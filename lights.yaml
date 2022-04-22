@@ -20,9 +20,18 @@
     entities:
       - light.cabinet_lights
       - light.coffee_cabinet_lights
+      - light.sink_cabinet_lights
 
   - platform: group
     name: All Countertop Lights
     entities:
       - light.coffee_counter_lights
       - light.countertop_lights
+      - light.sink_counter_lights
+
+  - platform: group
+    name: All Color Lights
+    entities:
+      - light.all_cabinet_lights
+      - light.hutch_rgb_lights
+      - light.tv_wled

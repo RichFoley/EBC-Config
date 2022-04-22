@@ -33,19 +33,20 @@
   id: hutch_light_on
   description: ''
   trigger:
-  - at: '07:25:00'
+  - at: input_datetime.morning_lights_on
     platform: time
   condition: []
   action:
-  - data: {}
+  - service: light.turn_on
+    data:
+      brightness: 125
     entity_id: light.hutch_lights
-    service: light.turn_on
 
 - alias: Hutch Light Off
   id: hutch_light_off
   description: ''
   trigger:
-  - at: '23:00:00'
+  - at: input_datetime.evening_lights_off
     platform: time
   condition: []
   action:

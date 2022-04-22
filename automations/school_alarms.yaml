@@ -1,0 +1,75 @@
+- alias: School Bus Alert
+  id: school_bus_alert
+  description: 'Flash hutch light for school bus'
+  trigger:
+  - at: input_datetime.school_bus_alert
+    platform: time
+  condition: 
+    condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'on'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.school_bus_alarm
+
+- alias: Morning Routine 1
+  id: morning_routine_1
+  description: 'Color changy lights for morning'
+  trigger:
+  - at: input_datetime.breakfast_time
+    platform: time
+  condition: 
+    condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'on'
+  action:
+  - service: scene.create
+    data:
+      scene_id: before_morning_routine
+      snapshot_entities:
+      - light.all_cabinet_lights
+      - light.tv_wled
+      - light.hutch_rgb_lights
+  - service: light.turn_on
+    entity_id: light.all_color_lights
+    data:
+      rgb_color: [0,255,0]
+      brightness: 200
+
+- alias: Morning Routine 2
+  id: morning_routine_2
+  description: 'Color changy lights for morning'
+  trigger:
+  - at: input_datetime.get_dressed
+    platform: time
+  condition: 
+    condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'on'
+  action:
+  - service: light.turn_on
+    entity_id: light.all_color_lights
+    data:
+      rgb_color: [191,0,255]
+      brightness: 200
+
+- alias: Morning Routine 3
+  id: morning_routine_3
+  description: 'Color changy lights for morning'
+  trigger:
+  - at: input_datetime.watch_for_bus
+    platform: time
+  condition: 
+    condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'on'
+  action:
+  - service: light.turn_on
+    entity_id: light.all_color_lights
+    data:
+      rgb_color: [255, 0, 0]
+      brightness: 200
+  - delay: '00:05'
+  - service: scene.turn_on
+    target:
+      entity_id: scene.before_morning_routine
