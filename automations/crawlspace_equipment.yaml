@@ -24,6 +24,26 @@
       option: Drying
     service: input_select.select_option
 
+- alias: Dehumidifier Defrosting
+  id: dehu_state_defrost
+  description: Set dehu state to defrost when power drops to sampling
+  trigger:
+  - below: 200
+    above: 50
+    entity_id: sensor.dehumidifier_power
+    platform: numeric_state
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.dehumidifier_state
+      state: Drying
+  action:
+  - data:
+      entity_id: input_select.dehumidifier_state
+      option: Defrosting
+    service: input_select.select_option
+
 - alias: Dehumidifier Idle
   id: dehu_state_idle
   description: Set dehu state to off when no power detected
@@ -64,7 +84,7 @@
 - alias: Sump Pump Error
   id: sump_pump_error
   trigger:
-  - above: 800
+  - above: 1000
     entity_id: sensor.sump_pump_power
     platform: numeric_state
   action:

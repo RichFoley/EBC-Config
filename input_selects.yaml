@@ -20,6 +20,7 @@ dehumidifier_state:
     - Idle
     - Sampling
     - Drying
+    - Defrosting
   initial: Idle
 
 sump_pump_state:
