@@ -11,7 +11,6 @@ frontend:
 logbook:
 system_health:
 config:
-updater:
 sun:
 map:
 mobile_app:
@@ -23,7 +22,7 @@ scene: !include scenes.yaml
 sensor: !include sensors.yaml
 template: !include template_sensors.yaml
 zone: !include zones.yaml
-# binary_sensor: !include binary_sensor.yaml
+binary_sensor: !include binary_sensor.yaml
 light: !include lights.yaml
 timer: !include timers.yaml
 input_boolean: !include input_booleans.yaml
@@ -60,7 +59,7 @@ alarm_control_panel:
     code: !secret alarm_code
     arming_time: 30
     delay_time: 50
-    trigger_time: 30
+    trigger_time: 90
     disarmed:
       trigger_time: 0
     armed_home:

@@ -27,7 +27,7 @@
       data:
         code: !secret alarm_code
 
-- alias: 'Arm alarm when everyonr leaves'
+- alias: 'Arm alarm when everyone leaves'
   trigger:
     - platform: state
       entity_id: group.family

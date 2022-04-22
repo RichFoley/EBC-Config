@@ -4,7 +4,52 @@
   icon: mdi:router-wireless
 - platform: statistics
   entity_id: sensor.laundry_aqara_temperature
-  name: Laundry_Temp_Stats
+  name: Laundry_Temp_St_Dev
+  state_characteristic: standard_deviation
+- platform: statistics
+  entity_id: sensor.laundry_aqara_temperature
+  name: Laundry_Temp_Avg_Linear
+  state_characteristic: average_linear
+- platform: statistics
+  entity_id: sensor.laundry_aqara_temperature
+  name: Laundry_Temp_Chg_Second
+  state_characteristic: change_second
+- platform: statistics
+  entity_id: sensor.laundry_aqara_temperature
+  name: Laundry_Temp_Chg_10min
+  state_characteristic: change_second
+  max_age:
+    minutes: 5
+  sampling_size: 50
+  precision: 1
+- platform: statistics
+  entity_id: sensor.dehumidifier_power
+  name: Dehu_Power_Noise
+  state_characteristic: noisiness
+
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /config
+    - type: memory_free
+    - type: memory_use_percent
+    - type: last_boot
+
+- platform: here_travel_time
+  api_key: !secret here_api_key
+  destination_entity_id: zone.home
+  origin_entity_id: person.rich
+  name: Rich Time to Home
+  traffic_mode: true
+  scan_interval: 600
+
+- platform: here_travel_time
+  api_key: !secret here_api_key
+  destination_entity_id: zone.home
+  origin_entity_id: person.kate
+  name: Kate Time to Home
+  traffic_mode: true
+  scan_interval: 600
 
 # - platform: rest
 #   resource: https://www.purpleair.com/json?show=12835
