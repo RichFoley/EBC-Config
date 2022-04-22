@@ -23,3 +23,5 @@ custom_components/frigate
 /tts
 /blueprints
 blackened.yaml
+custom_components/smartthinq_sensors
+custom_components/nodered
