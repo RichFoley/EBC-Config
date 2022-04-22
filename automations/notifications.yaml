@@ -12,6 +12,7 @@
   - service: notify.mobile_app_rphone
     data:
       title: Garage left open
+      # TODO: fix this BS
       message: >
         {% for entity in expand(state_attr('group.garage_doors','entity_id')) -%}
         {%if states(entity.entity_id)%} {{ state_attr(entity.entity_id,'friendly_name') }} is open. 
@@ -24,6 +25,22 @@
               critical: 1
               volume: 0.3
             vibrationPattern: 100, 1000, 100, 1000, 100
+          tag: garage-notify
+
+- alias: Garage Notify Clear
+  id: clear_garage_notify
+  description: Clear garage notification when closed
+  trigger:
+  - platform: state
+    entity_id: group.garage_doors
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      message: "clear_notification"
+      data:
+        tag: garage-notify
+    service: notify.mobile_app_rphone
 
 - alias: Shed open late
   id: shed_open_late
@@ -46,6 +63,22 @@
               name: default
               critical: 1
               volume: 0.3
+          tag: shed-notify
+
+- alias: Shed Notify Clear
+  id: shed_notify_clear
+  description: Clear shed notification when closed
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.shed_door
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      message: "clear_notification"
+      data:
+        tag: shed-notify
+    service: notify.mobile_app_rphone
 
 - id: 'Button_Notify'
   alias: Notification
@@ -83,22 +116,23 @@
                 critical: 1
                 volume: 0.3
 
-- id: 'Front_door_notify'
-  alias: Front Door Notify
-  description: 'e'
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.front_door_motion
-    to: 'on'
-  condition: []
-  action:
-  - service: notify.all_ios_devices
-    data:
-        title: Motion at the front door
-        message: put image here eventually
-        data:
-            push:
-              sound:
-                name: default
-                critical: 1
-                volume: 0.3
+# - id: 'Front_door_notify'
+#   alias: Front Door Notify
+#   description: 'e'
+#   trigger:
+#   - platform: state
+#     entity_id: binary_sensor.front_door_motion
+#     to: 'on'
+#   condition: []
+#   action:
+#   - service: notify.all_ios_devices
+#     data:
+#         title: Motion at the front door
+#         message: put image here eventually
+#         data:
+#             push:
+#               sound:
+#                 name: default
+#                 critical: 1
+#                 volume: 0.3
+
